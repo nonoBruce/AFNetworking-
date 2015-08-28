@@ -21,14 +21,18 @@
 
 
 //自己用
-- (void)getRequest:(NSURL *)url andDelegate:(id<HttpResultProtocol>)delegate andType:(HttpCommunicationType )cType;
+- (void)requestWithType:(HttpCommunicationType )cType delegate:(id<HttpResultProtocol>)delegate url:(NSString *)urlString httpType:(NSString *)httpType;;
+
+- (void)requestWithType:(HttpCommunicationType )cType delegate:(id<HttpResultProtocol>)delegate url:(NSString *)urlString params:(NSDictionary *)params httpType:(NSString *)httpType;;
+
+- (void)requestWithType:(HttpCommunicationType )cType delegate:(id<HttpResultProtocol>)delegate url:(NSString *)urlString params:(NSDictionary *)params headerParams:(NSDictionary *)headerParams httpType:(NSString *)httpType;
 
 
 //子类用
 - (HttpCommunicationResult *)parse:(NSDictionary *)dic andHttpResult:(HttpCommunicationResult *)httpResult;
 
+- (void)requestWithType:(HttpCommunicationType )cType delegate:(id<HttpResultProtocol>)delegate;
 
-//子类用
-- (void)requestWithObject:(id)object andDelegate:(id<HttpResultProtocol>)delegate andType:(HttpCommunicationType) cType;
-
+- (void)requestWithType:(HttpCommunicationType )cType delegate:(id<HttpResultProtocol>)delegate params:(NSObject *)params;
+- (void)requestWithType:(HttpCommunicationType )cType delegate:(id<HttpResultProtocol>)delegate params:(NSObject *)params headerParams:(NSObject *)headerParams;
 @end

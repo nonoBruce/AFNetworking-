@@ -20,6 +20,8 @@
 - (void)doHttpCommunicationWithType:(HttpCommunicationType)cType delegate:(id<HttpResultProtocol>)delegate;
 
 
-- (void)doHttpCommunicationWithType:(HttpCommunicationType)cType delegate:(id<HttpResultProtocol>)delegate object:(NSObject*)object;
+- (void)doHttpCommunicationWithType:(HttpCommunicationType)cType delegate:(id<HttpResultProtocol>)delegate params:(NSObject*)params;
+
+- (void)doHttpCommunicationWithType:(HttpCommunicationType)cType delegate:(id<HttpResultProtocol>)delegate params:(NSObject*)params headerParams:(NSObject *)headerParams;
 
 @end
