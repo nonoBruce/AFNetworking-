@@ -11,4 +11,6 @@
 @interface HttpImagesRequest : HttpConnect
 
 - (void)requestWithType:(HttpCommunicationType )cType delegate:(id<HttpResultProtocol>)delegate params:(NSDictionary *)params headerParams:(NSDictionary *)headerParams;
+
+
 @end

@@ -18,7 +18,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="isK-Oc-8E8" id="aLz-q7-ndp">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kjz-b0-7G7">
+                                        <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="DBImageView" translatesAutoresizingMaskIntoConstraints="NO" id="Kjz-b0-7G7">
                                             <rect key="frame" x="180" y="0.0" width="240" height="299"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="240" id="6GX-Pt-GGf"/>

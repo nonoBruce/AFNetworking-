@@ -11,8 +11,9 @@
 #import "MJRefresh.h"
 
 #import "ImageModel.h"
-#import "UIImageView+AFNetworking.h"
-#import "UIImage+AFNetworking.h"
+//#import "UIImageView+AFNetworking.h"
+//#import "UIImage+MultiFormat.h"
+#import "UIImageView+WebCache.h"
 
 @interface ViewController ()<HttpResultProtocol> {
     NSInteger _pageIndex ;
@@ -28,7 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    //
+    self.title = @"搞笑图片";
     
     //上拉刷新
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -73,7 +75,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TableViewCell" forIndexPath:indexPath];
     ImageModel *imageModel = self.resultItems[indexPath.row];
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:10];
-    [imageView setImageWithURL:[NSURL URLWithString:imageModel.imageUrl]];
+
+    
+    [imageView sd_setImageWithURL:[NSURL URLWithString:imageModel.imageUrl]];
+    
+    
 //    imageView.image = [UIImage imageWithData:<#(NSData *)#>]
     UILabel *label = (UILabel *)[cell viewWithTag:11];
     label.text = imageModel.imageTitle;
@@ -87,12 +93,33 @@
             self.resultItems = [NSMutableArray array];
         }
         
-        [self.resultItems addObjectsFromArray: result.returnData];
-        [self.tableView reloadData];
+//        [self.resultItems addObjectsFromArray: result.returnData];
         
         [self.tableView.footer endRefreshing];
         [self.tableView.header endRefreshing];
 
+        
+        //=================根据url去除重复
+        NSArray *arr = (NSArray*) result.returnData;
+        NSArray *resultArray = [self.resultItems copy];
+        for(ImageModel *newModel in arr){
+            BOOL isFound = NO;
+            for(ImageModel *oldModel in resultArray){
+                if([newModel.imageUrl isEqualToString:oldModel.imageUrl] ){
+                    isFound = YES;
+                }
+            }
+            if(!isFound){
+                [self.resultItems addObject:newModel];
+            }
+            
+        }
+        [self.tableView reloadData];
+
+        
+        
+        
+        
     }
     NSLog(@"requestFinishedSuccess");
 }
